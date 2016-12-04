@@ -1,0 +1,14 @@
+job "<%= @foo %>" {
+  type = "batch"
+  datacenters = [ "dc1" ]
+  group "<%= @foo %>" {
+    count = 1
+    task "echo" {
+      driver = "exec"
+      config {
+        command = "echo"
+        args = ["<%= @foo %>"]
+      }
+    }
+  }
+}
