@@ -2,13 +2,28 @@ require 'ostruct'
 module Bedouin
   class Environment < OpenStruct
     def self.parse(filename)
-      DSL.new.instance_eval File.read(filename)
+      DSL.new(filename).evaluate
     end
 
-    def self.resolve_parent(parent)
+    def initialize(n,base={})
+      super(base)
+      name = n
+    end
+
+    class DSL
+      def initialize(filename)
+        @filename=filename
+      end
+
+      def evaluate
+        self.instance_eval(File.read(@filename), @filename)
+      end
+
+      def resolve_parent(parent)
         parent_hash = case parent
-        when String, File
-          Environment.parse(parent)
+        when String
+          parent_path = File.expand_path(parent, File.dirname(@filename))
+          Environment.parse(parent_path)
         when NilClass
           nil
         else
@@ -20,16 +35,10 @@ module Bedouin
         end
 
         parent_hash
-    end
+      end
 
-    def initialize(n,base={})
-      super(base)
-      name = n
-    end
-
-    class DSL
       def environment(name,parent=nil,&block)
-        parent_hash = Environment.resolve_parent(parent)
+        parent_hash = resolve_parent(parent)
         e = Environment.new(name,parent_hash)
         e.instance_eval &block if block_given?
         return e
