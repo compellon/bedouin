@@ -7,7 +7,7 @@ module Bedouin
 
     def initialize(n,base={})
       super(base)
-      name = n
+      self.name = n
     end
 
     class DSL

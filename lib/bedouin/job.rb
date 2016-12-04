@@ -15,9 +15,9 @@ module Bedouin
     end
 
     def to_s
-      [stdout, stderr].each do |output|
-        output.each_line do |l|
-          puts @name + ": " + l
+      [stdout, stderr].map do |output|
+        output.each_line.map do |l|
+          @name + ": " + l
         end
       end
     end
