@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'bedouin'
+
+exit_val = Bedouin::CLI.new.execute(*ARGV)
+
+exit exit_val

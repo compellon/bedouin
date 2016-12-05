@@ -3,6 +3,7 @@ require "bedouin/template"
 require "bedouin/environment"
 require "bedouin/job"
 require "bedouin/runner"
+require "bedouin/cli"
 
 module Bedouin
   def self.template_for(template_path)
