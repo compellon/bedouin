@@ -1,5 +1,5 @@
 FROM alpine
-ARG NOMAD_VERSION=0.5.0
+ARG NOMAD_VERSION=0.5.2
 RUN apk add --no-cache wget ca-certificates unzip ruby &&\
   wget -q https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip &&\
   unzip -d /usr/local/bin nomad_${NOMAD_VERSION}_linux_amd64.zip &&\
