@@ -1,5 +1,5 @@
 FROM alpine:3.5
-ARG NOMAD_VERSION=0.5.2
+ARG NOMAD_VERSION=0.5.4
 RUN apk add --no-cache ruby go make git musl-dev bash &&\
   mkdir -p /tmp/src/github.com/hashicorp/ &&\
   cd /tmp/src/github.com/hashicorp/ &&\
