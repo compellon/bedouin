@@ -10,6 +10,7 @@ RUN apk add --no-cache ruby go make git musl-dev bash &&\
   export PATH=/tmp/bin:$PATH &&\
   make bootstrap &&\
   make dev &&\
+  cp -R $GOPATH/bin . &&\
   make install &&\
   cd / &&\
   rm -rf /tmp/* &&\
